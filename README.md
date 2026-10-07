@@ -1,27 +1,55 @@
 # Battle-IA — Ultimate Tic-Tac-Toe
 
-Un jeu de morpion géant en console, écrit en Python, pour jouer contre une IA Minimax avec élagage alpha-bêta.
+A Python console game with a search-based AI opponent using **Minimax and alpha-beta pruning**.
 
-## Lancer le jeu
+## Context and objective
 
-Python 3 est nécessaire. Aucune dépendance externe à installer.
+Academic AI project exploring decision-making in Ultimate Tic-Tac-Toe. Student teams developed agents that were confronted with one another. This repository provides a human-versus-AI console implementation.
+
+## Method
+
+- `GameState` stores the board, local-board results, current player and next playable board.
+- Minimax searches possible game states; alpha-beta pruning avoids branches that cannot improve the current decision.
+- A heuristic evaluates local and global positions.
+- Move ordering prioritises local wins, centres and corners.
+- The console game uses a search depth of **6**. Thinking time depends on the position and machine.
+
+This is a search-based AI: it does not train a machine learning model.
+
+## Technologies
+
+Python 3 and the standard library (`random`, `time`). No external dependencies are required.
+
+## Project structure
+
+```text
+ultimate_tic_tac_toe.py   # Rules, game state, search and console interface
+.gitignore
+README.md
+```
+
+## How to run
+
+From the repository directory:
 
 ```sh
 python ultimate_tic_tac_toe.py
 ```
 
-Choisis qui commence : `1` pour le joueur ou `2` pour l'IA. Le joueur humain utilise les X et l'IA les O. À chaque tour, saisis la colonne puis la ligne, entre 1 et 9.
+Choose `1` for the human to start or `2` for the AI. The human plays `X`, the AI plays `O`. Enter the **column first, then the row**, both between 1 and 9. Console prompts are in French.
 
-## Règles
+## Rules
 
-- Le plateau contient neuf mini-plateaux de morpion.
-- La position du coup dans un mini-plateau détermine le mini-plateau où l'adversaire doit jouer.
-- Si ce mini-plateau est déjà gagné ou terminé, l'adversaire peut jouer dans n'importe quel mini-plateau encore ouvert.
-- Aligne trois mini-plateaux gagnés pour remporter la partie.
+The board contains nine smaller tic-tac-toe boards. Your position within a small board determines the board where your opponent must play next. If that destination board has already ended, the opponent can play on any open board. Win three local boards in a row to win the game.
 
-## Intelligence artificielle
+## Current status
 
-L'IA utilise Minimax, l'élagage alpha-bêta et un tri des coups favorisant les victoires locales, les centres et les coins. La partie utilise une profondeur de recherche de 6 ; le temps de réflexion dépend de la position et de la machine.
+The repository contains the console game and AI implementation. No tournament ranking, benchmark or win-rate claim is made. Search time can grow substantially in open positions.
 
-Le code source fourni est conservé tel quel.
+## Possible future improvements
 
+- Add tests for legal moves, terminal states and undo operations.
+- Benchmark search time on a fixed set of positions.
+- Compare heuristics and consider iterative deepening with a time limit.
+
+These are proposed extensions, not implemented features.
